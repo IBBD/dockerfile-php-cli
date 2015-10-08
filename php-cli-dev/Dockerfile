@@ -24,6 +24,9 @@ RUN apt-get update \
         man \
         git-core \
         vim-tiny \
+        Graphviz \
+        tcpdump \
+        strace \
     && echo "set fileencodings=utf-8" >> /etc/vim/vimrc \
     && echo "set fileencoding=utf-8" >> /etc/vim/vimrc \
     && echo "set encoding=utf-8" >> /etc/vim/vimrc \
@@ -32,6 +35,10 @@ RUN apt-get update \
     && pear upgrade pear \
     && pecl install xdebug \
     && echo "zend_extension=xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini \
+    && pecl install trace \
+    && echo "extension=trace.so" > /usr/local/etc/php/conf.d/trace.ini \
+    && pecl install xhprof-0.9.4 \
+    && echo "extension=xhprof.so" > /usr/local/etc/php/conf.d/xhprof.ini \
     && chmod +x /usr/local/bin/phpunit \
     && rm -r /var/lib/apt/lists/*
 
